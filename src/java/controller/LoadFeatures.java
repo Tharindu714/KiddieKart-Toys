@@ -3,10 +3,9 @@ package controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import entity.Category;
+import entity.Product_Category;
 import entity.Product_Condition;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,12 +30,12 @@ public class LoadFeatures extends HttpServlet {
 
         Session session = HibernateUtil.getSessionFactory().openSession();
 
-        Criteria criteria1 = session.createCriteria(Category.class);
-        criteria1.addOrder(Order.asc("name"));
-        List<Category> categoryList = criteria1.list();
+        Criteria criteria1 = session.createCriteria(Product_Category.class);
+        criteria1.addOrder(Order.asc("id"));
+        List<Product_Category> categoryList = criteria1.list();
 
         Criteria criteria5 = session.createCriteria(Product_Condition.class);
-        criteria5.addOrder(Order.asc("name"));
+        criteria5.addOrder(Order.asc("id"));
         List<Product_Condition> conditionList = criteria5.list();
 
         JsonObject jsonObject = new JsonObject();
