@@ -21,11 +21,11 @@ public class Product implements Serializable {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "product_condition_id")
+    @JoinColumn(name = "product_condition_id", nullable = false)
     private Product_Condition product_condition;
     
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Product_Category product_category;
 
     @Column(name = "title", nullable = false)

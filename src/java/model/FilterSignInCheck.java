@@ -11,10 +11,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author ByteBigBoss
- */
+
 @WebFilter(filterName = "FilterSignInCheck", urlPatterns = {"/add_product.html"})
 public class FilterSignInCheck implements Filter {
 

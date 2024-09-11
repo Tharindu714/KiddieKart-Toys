@@ -31,7 +31,7 @@ public class LoadFeatures extends HttpServlet {
         Session session = HibernateUtil.getSessionFactory().openSession();
 
         Criteria criteria1 = session.createCriteria(Product_Category.class);
-        criteria1.addOrder(Order.asc("id"));
+        criteria1.addOrder(Order.asc("name"));
         List<Product_Category> categoryList = criteria1.list();
 
         Criteria criteria5 = session.createCriteria(Product_Condition.class);

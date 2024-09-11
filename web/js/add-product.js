@@ -1,4 +1,4 @@
-
+var modelList;
 async function loadFeatures() {
 
     const response = await fetch("LoadFeatures");
@@ -6,6 +6,7 @@ async function loadFeatures() {
 
         const json = await response.json();
         const categoryList = json.categoryList;
+        modelList = json.modelList;
         const conditionList = json.conditionList;
         loadSelectOptions("category-select", categoryList, ["id", "name"]);
         loadSelectOptions("condition-select", conditionList, ["id", "name"]);

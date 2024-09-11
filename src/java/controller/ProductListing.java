@@ -1,3 +1,4 @@
+
 package controller;
 
 import com.google.gson.Gson;
@@ -32,10 +33,9 @@ import org.hibernate.criterion.Restrictions;
 public class ProductListing extends HttpServlet {
 
     @Override
-    @SuppressWarnings("empty-statement")
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         Response_DTO response_DTO = new Response_DTO();
 
         Gson gson = new Gson();
@@ -57,7 +57,7 @@ public class ProductListing extends HttpServlet {
         if (!Validations.isInteger(categoryId)) {
             response_DTO.setContent("Invalid Category");
 
-        } else if (!Validations.isInteger(conditionId)) {
+        }else if (!Validations.isInteger(conditionId)) {
             response_DTO.setContent("Invalid Condition");
 
         } else if (title.isEmpty()) {
@@ -74,15 +74,6 @@ public class ProductListing extends HttpServlet {
 
         } else if (Double.parseDouble(price) <= 0) {
             response_DTO.setContent("Price must be greater than 0");
-
-        } else if (delivery.isEmpty()) {
-            response_DTO.setContent("Please fill Delivery Fee");
-
-        } else if (!Validations.isDouble(delivery)) {
-            response_DTO.setContent("Invalid Delivery Fee");
-
-        } else if (Double.parseDouble(delivery) <= 0) {
-            response_DTO.setContent("Delivery Fee must be greater than 0");
 
         } else if (quantity.isEmpty()) {
             response_DTO.setContent("Invalid Quantity");
@@ -104,70 +95,70 @@ public class ProductListing extends HttpServlet {
 
         } else {
 
-            Product_Category product_Category = (Product_Category) session.get(Product_Category.class, Integer.parseInt(categoryId));
+Product_Category product_Category = (Product_Category) session.get(Product_Category.class, Integer.parseInt(categoryId));
 
             if (product_Category == null) {
                 response_DTO.setContent("Please select a valid Category");
 
             } else {
-                Product_Condition product_Condition = (Product_Condition) session.get(Product_Condition.class, Integer.parseInt(conditionId));
-                if (product_Condition == null) {
-                    response_DTO.setContent("Please select a valid Product Condition");
+                              Product_Condition product_Condition = (Product_Condition) session.get(Product_Condition.class, Integer.parseInt(conditionId));
+                              
 
-                } else {
-                    //to do Insert
-                    Product product = new Product();
-                    product.setDate_time(new Date());
-                    product.setDescription(description);
-                    product.setTitle(title);
-                    // product.setId(); auto increment
-                    product.setPrice(Double.parseDouble(price));
-                    product.setDelivery_fee(Double.parseDouble(delivery));
-                    product.setQty(Integer.parseInt(quantity));
+                              if (product_Condition == null) {
+                                    response_DTO.setContent("Please select a valid Product Condition");
 
-                    //get active status
-                    Product_Status product_Status = (Product_Status) session.load(Product_Status.class, 1);
-                    product.setProduct_Status(product_Status);
+                                } else {
+                                    //to do Insert
+                                    Product product = new Product();
+                                    product.setDate_time(new Date());
+                                    product.setDescription(description);
+                                    // product.setId(); auto increment
+                                    product.setPrice(Double.parseDouble(price));
+                                    product.setDelivery_fee(Double.parseDouble(price));
 
-                    product.setProduct_condition(product_Condition);
-                    product.setProduct_category(product_Category);
-                    
-                    product.setTitle(title);
+                                    //get active status
+                                    Product_Status product_Status = (Product_Status) session.load(Product_Status.class, 1);
+                                    product.setProduct_Status(product_Status);
 
-                    //get user
-                    User_DTO user_DTO = (User_DTO) request.getSession().getAttribute("user");
-                    Criteria criteria = session.createCriteria(User.class);
-                    criteria.add(Restrictions.eq("email", user_DTO.getEmail()));
-                    User user = (User) criteria.uniqueResult();
-                    product.setUser(user);
+                                    product.setProduct_condition(product_Condition);
+                                    product.setProduct_category(product_Category);
+                                    product.setQty(Integer.parseInt(quantity));
+                                    product.setTitle(title);
 
-                    int pid = (int) session.save(product);
-                    session.beginTransaction().commit();
+                                    //get user
+                                    User_DTO user_DTO = (User_DTO) request.getSession().getAttribute("user");
+                                    Criteria criteria = session.createCriteria(User.class);
+                                    criteria.add(Restrictions.eq("email", user_DTO.getEmail()));
+                                    User user = (User)criteria.uniqueResult();
+                                    product.setUser(user);
 
-                    String applicationPath = request.getServletContext().getRealPath("");
-                    String newApplicationPath = applicationPath.replace("build" + File.separator + "web", "web");
+                                    int pid = (int) session.save(product);
+                                    session.beginTransaction().commit();
 
-                    File folder = new File(newApplicationPath + File.separator + "product_images" + File.separator + pid);
-                    folder.mkdir();
+                                    String applicationPath = request.getServletContext().getRealPath("");
+                                    String newApplicationPath = applicationPath.replace("build" + File.separator + "web", "web");
 
-                    File file1 = new File(folder, "image1.png");
-                    InputStream inputStream = image1.getInputStream();
-                    Files.copy(inputStream, file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                                    File folder = new File(newApplicationPath + File.separator + "product_images" + File.separator + pid);
+                                    folder.mkdir();
 
-                    File file2 = new File(folder, "image2.png");
-                    InputStream inputStream2 = image2.getInputStream();
-                    Files.copy(inputStream2, file2.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                                    File file1 = new File(folder, "image1.png");
+                                    InputStream inputStream = image1.getInputStream();
+                                    Files.copy(inputStream, file1.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                    File file3 = new File(folder, "image3.png");
-                    InputStream inputStream3 = image3.getInputStream();
-                    Files.copy(inputStream3, file3.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                                    File file2 = new File(folder, "image2.png");
+                                    InputStream inputStream2 = image2.getInputStream();
+                                    Files.copy(inputStream2, file2.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                    response_DTO.setSuccess(true);
-                    response_DTO.setContent("Product Added Successfully!");
+                                    File file3 = new File(folder, "image3.png");
+                                    InputStream inputStream3 = image3.getInputStream();
+                                    Files.copy(inputStream3, file3.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                }
+                                    response_DTO.setSuccess(true);
+                                    response_DTO.setContent("Product Added Successfully!");
 
-            }
+                                }
+
+                            }
 
         }
 
@@ -175,5 +166,6 @@ public class ProductListing extends HttpServlet {
         response.setContentType("application/json");
         response.getWriter().write(gson.toJson(response_DTO));
     }
+       
 
 }
