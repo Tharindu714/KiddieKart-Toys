@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>KiddieKart Add Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="bootstrap/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="assets/vendor/bootstrap-5.1.3/css/bootstrap.css" type="text/css"/>
+    </head>
+
+
+    <body class="body" style="background-color: #f9d4c8;" onload="loadFeatures();">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="row ">
+                        <h2 class=" mt-2" style="color:#DEAD6F;">Add Your Product Here</h2>
+                    </div>
+                </div>
+                <div class="col-10 offset-1">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent">
+                            <li class="breadcrumb-item fw-bold"><a href="myProducts.html" class="text-black-50">Back</a></li>
+                            <li class="breadcrumb-item active text-light text-black-50" aria-current="page">Product Registration</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-12 d-none" id="addmsgdiv">
+                    <div class="alert alert-success" role="alert" id="addalertdiv">
+                        <i class="bi bi-check2-circle fs-5" id="addmsg">
+
+                        </i>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row d-flex justify-content-center mt-3 add-product-details">
+                        <div class="col-lg-5 col-md-5 col-sm-10 mx-2 my-2">
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Select Category</label>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <select class="form-select text-center text-black rounded-4" id="category-select"  style="height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; font-size: medium;">
+
+                                </select>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Add a Title</label>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" id="title" class="form-control f1 text-black rounded-4" style="height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Quantity</label>
+                            </div>
+                            <div class="input-number col-12 d-flex justify-content-center">
+                                <input type="number" class="rounded-4 text-black" style="outline: none; height: 40px; width: 615px;background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;" value="1" pattern="[0-9]" id="quantity">
+                            </div>
+
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-10 mx-2 my-2 add-product-detail-box-2" style="border-left:2px solid #DEAD6F;">
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Cost Per Item</label>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <span class="input-group-text rounded-4 text-black-50" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">Rs.</span>
+                                <input type="number" id="price" class="form-control rounded-4 text-black" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">
+                                <span class="input-group-text rounded-4 text-black-50" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">.00</span>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Delivery Cost</label>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <span class="input-group-text rounded-4 text-black-50" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">Rs.</span>
+                                <input type="number" id="delivery" class="form-control rounded-4 text-black" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">
+                                <span class="input-group-text rounded-4 text-black-50" style="outline: none; height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">.00</span>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <label class="text-black-50 my-2">Select Condition</label>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center">
+                                <select class="form-select text-center text-black rounded-4" id="condition-select"  style="height: 40px; background-color: white; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; font-size: medium;">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <hr class="" style="border-width: 5px; color: #DEAD6F;" />
+                </div>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <label class="form-label fw-bold text-black-50 f5" style="font-size: 20px;">Product Description</label>
+                                </div>
+                                <div class="col-12 add-description-box d-flex justify-content-center">
+                                    <textarea class="form-control f5 rounded-4" id="description" placeholder="Add product description..." cols="30" rows="20" style="font-size: 15px; border: none; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset; width: 90%; min-height: 150px;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12">
+                    <hr class="" style="border-width: 5px; color: #DEAD6F;" />
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <label class="form-label fw-bold text-black-50" style="font-size:20px;">Add Product Image</label>
+                        </div>
+
+                        <div class="col-lg-10 offset-lg-1 col-10 offset-1">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label>Image 1</label>
+                                    <input class="form-control b2" type="file" accept="image/*" id="image1">
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label>Image 2</label>
+                                    <input class="form-control b2" type="file" accept="image/*" id="image2">
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label>Image 3</label>
+                                    <input class="form-control b2" type="file" accept="image/*" id="image3">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <hr class="" style="border-width: 5px; color: #DEAD6F;" />
+                </div>
+
+                <div class="offset-lg-4 col-12 col-lg-4 d-grid mt-3 mb-3">
+                    <button class="btn btn-outline-danger fw-bold text-black-50" type="button "style="background-color: #DEAD6F; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;" onclick="productListing();">ADD & SAVE Product</button>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <script src="bootstrap.bundle.js"></script>
+        <script src="script.js"></script>
+        <script src="js/add-product.js"></script>
+
+    </body>
+
+</html>

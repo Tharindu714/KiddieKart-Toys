@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>KiddieKart SignIn</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="bootstrap/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="assets/vendor/bootstrap-5.1.3/css/bootstrap.css" type="text/css"/>
+    </head>
+    <body>
+        <div class="container-fluid vh-100 d-flex justify-content-center align-content-center" style="background-color: #F9F3EC;">
+            <div class="row d-flex align-content-center justify-content-center">
+                <div class="col-12 mb-5" style="display: flex; justify-content: center; align-items: center;">
+                    <h1>WELCOME TO KIDDEKART!</h1>  
+                </div>
+                <div class="col-lg-5 mx-3 d-lg-block logo"></div>
+                <div class="col-10 col-lg-5 " id="signInBox">
+                    <div class="row g-2 d-flex justify-content-center  mx-2 rounded-4" style="background-color: #f9d4c8;  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;">
+
+                        <div class="col-10 d-flex justify-content-center">
+                            <p class="fs-2" style="color:  #DEAD6F;">Sign In</p>
+                        </div>
+                        <p class="text-danger" id="message"></p>
+
+                        <div class="col-10">
+                            <label class="form-label rounded-4 f1" style="color: white; ">Email</label>
+                            <input type="email" class="form-control" placeholder="Enter Your Email Address" id="email" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;" />
+                        </div>
+                        <div class="col-10">
+                            <label class="form-label f1" style="color: white;">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Your Password" id="password" style="box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;"/>
+                        </div>
+                        <div class="col-5">
+                            <!--                        <div class="form-check">
+                                                        <input class="form-check-input mt-2" type="checkbox" id="rememberme" />
+                                                        <label class="form-check-label f1" style="color: white;">Remember Me</label>
+                                                    </div>-->
+                        </div>
+                        <div class="col-5 text-end">
+                            <a href="verify-account.html" class="link-primary f1">Verify Account</a>
+                        </div>
+
+
+                        <div class="col-10 d-grid mt-2">
+                            <button class="btn f2" style="background-color: white; color: #DEAD6F; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;" onclick="signIn();">Sign In</button>
+                        </div>
+                        <div class="col-10  d-grid mt-2 mb-4">
+                            <button class="btn" style="background-color: white; color: #DEAD6F; border-color: #DEAD6F; border-width: 2px; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;" onclick="window.location = 'sign_up.html'">New Member? Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 fixed-bottom d-none d-lg-block">
+                    <p class="text-center">&copy; 2024 KiddieKart.com || All Right Reserved</p>
+                </div>
+
+
+            </div>
+        </div>
+        <script src="js/sign-in.js"></script>
+    </body>
+
+
+
+</html>
