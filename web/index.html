@@ -1,2060 +1,1437 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>KiddieKart</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="format-detection" content="telephone=no">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
+    <head>
+        <title>KiddieKart</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="author" content="">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <link rel="stylesheet" href="bootstrap/bootstrap-icons.css"/>
+    </head>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
+          rel="stylesheet">
+
 </head>
 
+<body onload="checkSignIn();">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
-<link rel="stylesheet" type="text/css" href="css/vendor.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap"
-  rel="stylesheet">
-
-</head>
-
-<body>
-
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <defs>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
-        <path fill="currentColor"
+<symbol xmlns="http://www.w3.org/2000/svg" id="link" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M12 19a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0-4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm-5 0a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm7-12h-1V2a1 1 0 0 0-2 0v1H8V2a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3Zm1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9h16Zm0-11H4V6a1 1 0 0 1 1-1h1v1a1 1 0 0 0 2 0V5h8v1a1 1 0 0 0 2 0V5h1a1 1 0 0 1 1 1ZM7 15a1 1 0 1 0-1-1a1 1 0 0 0 1 1Zm0 4a1 1 0 1 0-1-1a1 1 0 0 0 1 1Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="arrow-right" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="arrow-right" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M17.92 11.62a1 1 0 0 0-.21-.33l-5-5a1 1 0 0 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1 1 0 0 0 0 1.42a1 1 0 0 0 1.42 0l5-5a1 1 0 0 0 .21-.33a1 1 0 0 0 0-.76Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="category" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="category" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M19 5.5h-6.28l-.32-1a3 3 0 0 0-2.84-2H5a3 3 0 0 0-3 3v13a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-10a3 3 0 0 0-3-3Zm1 13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-13a1 1 0 0 1 1-1h4.56a1 1 0 0 1 .95.68l.54 1.64a1 1 0 0 0 .95.68h7a1 1 0 0 1 1 1Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="calendar" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="calendar" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M19 4h-2V3a1 1 0 0 0-2 0v1H9V3a1 1 0 0 0-2 0v1H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-7h16Zm0-9H4V7a1 1 0 0 1 1-1h2v1a1 1 0 0 0 2 0V6h6v1a1 1 0 0 0 2 0V6h2a1 1 0 0 1 1 1Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M20.16 4.61A6.27 6.27 0 0 0 12 4a6.27 6.27 0 0 0-8.16 9.48l7.45 7.45a1 1 0 0 0 1.42 0l7.45-7.45a6.27 6.27 0 0 0 0-8.87Zm-1.41 7.46L12 18.81l-6.75-6.74a4.28 4.28 0 0 1 3-7.3a4.25 4.25 0 0 1 3 1.25a1 1 0 0 0 1.42 0a4.27 4.27 0 0 1 6 6.05Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="plus" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="plus" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="minus" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M19 11H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="minus" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M19 11H5a1 1 0 0 0 0 2h14a1 1 0 0 0 0-2Z" />
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="cart" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M8.5 19a1.5 1.5 0 1 0 1.5 1.5A1.5 1.5 0 0 0 8.5 19ZM19 16H7a1 1 0 0 1 0-2h8.491a3.013 3.013 0 0 0 2.885-2.176l1.585-5.55A1 1 0 0 0 19 5H6.74a3.007 3.007 0 0 0-2.82-2H3a1 1 0 0 0 0 2h.921a1.005 1.005 0 0 1 .962.725l.155.545v.005l1.641 5.742A3 3 0 0 0 7 18h12a1 1 0 0 0 0-2Zm-1.326-9l-1.22 4.274a1.005 1.005 0 0 1-.963.726H8.754l-.255-.892L7.326 7ZM16.5 19a1.5 1.5 0 1 0 1.5 1.5a1.5 1.5 0 0 0-1.5-1.5Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="check" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="check" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M18.71 7.21a1 1 0 0 0-1.42 0l-7.45 7.46l-3.13-3.14A1 1 0 1 0 5.29 13l3.84 3.84a1 1 0 0 0 1.42 0l8.16-8.16a1 1 0 0 0 0-1.47Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="trash" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="trash" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M10 18a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1ZM20 6h-4V5a3 3 0 0 0-3-3h-2a3 3 0 0 0-3 3v1H4a1 1 0 0 0 0 2h1v11a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8h1a1 1 0 0 0 0-2ZM10 5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1h-4Zm7 14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8h10Zm-3-1a1 1 0 0 0 1-1v-6a1 1 0 0 0-2 0v6a1 1 0 0 0 1 1Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="star-outline" viewBox="0 0 15 15">
-        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="star-outline" viewBox="0 0 15 15">
+    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
           d="M7.5 9.804L5.337 11l.413-2.533L4 6.674l2.418-.37L7.5 4l1.082 2.304l2.418.37l-1.75 1.793L9.663 11L7.5 9.804Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="star-solid" viewBox="0 0 15 15">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="star-solid" viewBox="0 0 15 15">
+    <path fill="currentColor"
           d="M7.953 3.788a.5.5 0 0 0-.906 0L6.08 5.85l-2.154.33a.5.5 0 0 0-.283.843l1.574 1.613l-.373 2.284a.5.5 0 0 0 .736.518l1.92-1.063l1.921 1.063a.5.5 0 0 0 .736-.519l-.373-2.283l1.574-1.613a.5.5 0 0 0-.283-.844L8.921 5.85l-.968-2.062Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="search" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="search" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 24 24">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="user" viewBox="0 0 24 24">
+    <path fill="currentColor"
           d="M15.71 12.71a6 6 0 1 0-7.42 0a10 10 0 0 0-6.22 8.18a1 1 0 0 0 2 .22a8 8 0 0 1 15.9 0a1 1 0 0 0 1 .89h.11a1 1 0 0 0 .88-1.1a10 10 0 0 0-6.25-8.19ZM12 12a4 4 0 1 1 4-4a4 4 0 0 1-4 4Z" />
-      </symbol>
-      <symbol xmlns="http://www.w3.org/2000/svg" id="close" viewBox="0 0 15 15">
-        <path fill="currentColor"
+</symbol>
+<symbol xmlns="http://www.w3.org/2000/svg" id="close" viewBox="0 0 15 15">
+    <path fill="currentColor"
           d="M7.953 3.788a.5.5 0 0 0-.906 0L6.08 5.85l-2.154.33a.5.5 0 0 0-.283.843l1.574 1.613l-.373 2.284a.5.5 0 0 0 .736.518l1.92-1.063l1.921 1.063a.5.5 0 0 0 .736-.519l-.373-2.283l1.574-1.613a.5.5 0 0 0-.283-.844L8.921 5.85l-.968-2.062Z" />
-      </symbol>
+</symbol>
 
-    </defs>
-  </svg>
+</defs>
+</svg>
 
-  <div class="preloader-wrapper">
+<div class="preloader-wrapper">
     <div class="preloader">
     </div>
-  </div>
+</div>
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
     <div class="offcanvas-header justify-content-center">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <div class="order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-circle pt-2">3</span>
-        </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Grey Hoodie</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Dog Food</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Soft Toy</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span class="fw-bold">Total (USD)</span>
-            <strong>$20</strong>
-          </li>
-        </ul>
+        <div class="order-md-last">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Your cart</span>
+                <span class="badge bg-primary rounded-circle pt-2">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Grey Hoodie</h6>
+                        <small class="text-body-secondary">Brief description</small>
+                    </div>
+                    <span class="text-body-secondary">$12</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Dog Food</h6>
+                        <small class="text-body-secondary">Brief description</small>
+                    </div>
+                    <span class="text-body-secondary">$8</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <div>
+                        <h6 class="my-0">Soft Toy</h6>
+                        <small class="text-body-secondary">Brief description</small>
+                    </div>
+                    <span class="text-body-secondary">$5</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span class="fw-bold">Total (USD)</span>
+                    <strong>$20</strong>
+                </li>
+            </ul>
 
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch"
-    aria-labelledby="Search">
-    <div class="offcanvas-header justify-content-center">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-
-      <div class="order-md-last">
-        <h4 class="text-primary text-uppercase mb-3">
-          Search
-        </h4>
-        <div class="search-bar border rounded-2 border-dark-subtle">
-          <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-            <input type="text" class="form-control border-0 bg-transparent" placeholder="Search Here" />
-            <iconify-icon icon="tabler:search" class="fs-4 me-3"></iconify-icon>
-          </form>
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
-  <header>
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasSearch"
+     aria-labelledby="Search">
+    <div class="offcanvas-header justify-content-center">
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+        <div class="order-md-last">
+            <h4 class="text-primary text-uppercase mb-3">
+                Search
+            </h4>
+            <div class="search-bar border rounded-2 border-dark-subtle">
+                <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
+                    <input type="text" class="form-control border-0 bg-transparent" placeholder="Search Here" />
+                    <iconify-icon icon="tabler:search" class="fs-4 me-3"></iconify-icon>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header>
     <div class="container py-2">
-      <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
+        <div class="row py-4 pb-0 pb-sm-4 align-items-center ">
 
-        <div class="col-sm-4 col-lg-3 text-center text-sm-start">
-          <div class="main-logo">
-            <a href="index.html">
-              <img src="images/logo.png" alt="logo" class="img-fluid">
-            </a>
-          </div>
+            <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+                <div class="main-logo">
+                    <a href="index.html">
+                        <img src="images/logo.png" alt="logo" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
+                    <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
+                        <input type="text" class="form-control border-0 bg-transparent"
+                               placeholder="Search for your kiddie item" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                              d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
+                        </svg>
+                    </form>
+                </div>
+            </div>
+
+            <div
+                class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+                <div class="support-box text-end d-none d-xl-block" id="st-quick-link">
+                    <a class="fs-5 nav-link" id="st-quick-link-li-1" href="sign_in.html" id="st-button-1">Sign In</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"/>
+                    <path fill-rule="evenodd" d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                    </svg>
+                </div>
+                <div class="support-box text-end d-none d-xl-block">
+                    <a class="fs-5 nav-link"  href="sign_up.html">Sign Up
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                        </svg></a>
+                </div>
+
+
+
+            </div>
         </div>
-
-        <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-          <div class="search-bar border rounded-2 px-3 border-dark-subtle">
-            <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
-              <input type="text" class="form-control border-0 bg-transparent"
-                placeholder="Search for your kiddie item" />
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path fill="currentColor"
-                  d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
-              </svg>
-            </form>
-          </div>
-        </div>
-
-        <div
-          class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
-          <div class="support-box text-end d-none d-xl-block">
-            <span class="fs-6 secondary-font text-muted">Phone</span>
-            <h5 class="mb-0">0556692330</h5>
-          </div>
-          <div class="support-box text-end d-none d-xl-block">
-            <span class="fs-6 secondary-font text-muted">Email</span>
-            <h5 class="mb-0">kiddiekart@gmail.com</h5>
-          </div>
-
-
-
-        </div>
-      </div>
     </div>
 
     <div class="container-fluid">
-      <hr class="m-0">
+        <hr class="m-0">
     </div>
 
     <div class="container">
-      <nav class="main-menu d-flex navbar navbar-expand-lg ">
+        <nav class="main-menu d-flex navbar navbar-expand-lg ">
 
-        <div class="d-flex d-lg-none align-items-end mt-3">
-          <ul class="d-flex justify-content-end list-unstyled m-0">
-            <li>
-              <a href="account.html" class="mx-3">
-                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-              </a>
-            </li>
-            <li>
-              <a href="wishlist.html" class="mx-3">
-                <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-              </a>
-            </li>
+            <div class="d-flex d-lg-none align-items-end mt-3">
+                <ul class="d-flex justify-content-end list-unstyled m-0">
+                    <li>
+                        <a href="user-profile.html.html" class="mx-3">
+                            <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="wishlist.html" class="mx-3">
+                            <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                        </a>
+                    </li>
 
-            <li>
-              <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                aria-controls="offcanvasCart">
-                <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                  03
-                </span>
-              </a>
-            </li>
+                    <li>
+                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                           aria-controls="offcanvasCart">
+                            <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                            <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                03
+                            </span>
+                        </a>
+                    </li>
 
-            <li>
-              <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                aria-controls="offcanvasSearch">
-                <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
-                </span>
-              </a>
-            </li>
-          </ul>
-
-        </div>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-          aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-
-          <div class="offcanvas-header justify-content-center">
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-
-          <div class="offcanvas-body justify-content-between">
-            <select class="filter-categories border-0 mb-0 me-5">
-              <option>Shop by Category</option>
-              <option>Toys</option>
-              <option>Back Packs</option>
-              <option>Clothes</option>
-              <option>School Stash</option>
-            </select>
-
-            <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
-              <li class="nav-item">
-                <a href="index.html" class="nav-link active">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
-                  aria-expanded="false">Pages</a>
-                <ul class="dropdown-menu" aria-labelledby="pages">
-                  
-                  <li><a href="shop.html" class="dropdown-item">Shop</a></li>
-                  
-                  <li><a href="cart.html" class="dropdown-item">Cart</a></li>
-                  <li><a href="wishlist.html" class="dropdown-item">Wishlist</a></li>
-                  <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
-               
+                    <li>
+                        <a href="#" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                           aria-controls="offcanvasSearch">
+                            <iconify-icon icon="tabler:search" class="fs-4"></iconify-icon>
+                            </span>
+                        </a>
+                    </li>
                 </ul>
-              </li>
-              <li class="nav-item">
-                <a href="index.html" class="nav-link">Shop</a>
-              </li>
-              
-              <li class="nav-item">
-                <a href="index.html" class="nav-link">Contact</a>
-              </li>
-              
-            </ul>
-
-            <div class="d-none d-lg-flex align-items-end">
-              <ul class="d-flex justify-content-end list-unstyled m-0">
-                <li>
-                  <a href="index.html" class="mx-3">
-                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                  </a>
-                </li>
-                <li>
-                  <a href="index.html" class="mx-3">
-                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
-                  </a>
-                </li>
-
-                <li class="">
-                  <a href="index.html" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
-                    aria-controls="offcanvasCart">
-                    <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                    <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                      03
-                    </span>
-                  </a>
-                </li>
-              </ul>
 
             </div>
 
-          </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        </div>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
 
-      </nav>
+                <div class="offcanvas-header justify-content-center">
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body justify-content-between">
+                    <select class="filter-categories border-0 mb-0 me-5">
+                        <option>Shop by Category</option>
+                        <option>Toys</option>
+                        <option>Back Packs</option>
+                        <option>Clothes</option>
+                        <option>School Stash</option>
+                    </select>
+
+                    <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" role="button" id="pages" data-bs-toggle="dropdown"
+                               aria-expanded="false">Pages</a>
+                            <ul class="dropdown-menu" aria-labelledby="pages">
+
+                                <li><a href="shop.html" class="dropdown-item">Shop</a></li>
+
+                                <li><a href="cart.html" class="dropdown-item">Cart</a></li>
+                                <li><a href="wishlist.html" class="dropdown-item">Wishlist</a></li>
+                                <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="shop.html" class="nav-link">Shop</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link">Contact</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="d-none d-lg-flex align-items-end">
+                        <ul class="d-flex justify-content-end list-unstyled m-0">
+                            <li>
+                                <a href="user-profile.html" class="mx-3">
+                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="wishlist.html" class="mx-3">
+                                    <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
+                                </a>
+                            </li>
+
+                            <li class="">
+                                <a href="index.html" class="mx-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                                   aria-controls="offcanvasCart">
+                                    <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
+                                    <span class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
+                                        03
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </nav>
 
 
 
     </div>
-  </header>
+</header>
 
-  <section id="banner" style="background: #F9F3EC;">
+<section id="banner" style="background: #F9F3EC;">
     <div class="container">
-      <div class="swiper main-swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide py-5">
-            <div class="row banner-content align-items-center">
-              <div class="img-wrapper col-md-5">
-                <img src="images/banner-img.png" class="img-fluid">
-              </div>
-              <div class="content-wrapper col-md-7 p-5 mb-5">
-<!--                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>-->
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    kids</span>
-                </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                  shop now
-                  <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                    <use xlink:href="#arrow-right"></use>
-                  </svg></a>
-              </div>
-
-            </div>
-          </div>
-          <div class="swiper-slide py-5">
-            <div class="row banner-content align-items-center">
-              <div class="img-wrapper col-md-5">
-                <img src="images/banner-img3.png" class="img-fluid">
-              </div>
-              <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    kids</span>
-                </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                  shop now
-                  <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                    <use xlink:href="#arrow-right"></use>
-                  </svg></a>
-              </div>
-
-            </div>
-          </div>
-          <div class="swiper-slide py-5">
-            <div class="row banner-content align-items-center">
-              <div class="img-wrapper col-md-5">
-                <img src="images/banner-img4.png" class="img-fluid">
-              </div>
-              <div class="content-wrapper col-md-7 p-5 mb-5">
-                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
-                <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
-                    kids</span>
-                </h2>
-                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                  shop now
-                  <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                    <use xlink:href="#arrow-right"></use>
-                  </svg></a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-pagination mb-5"></div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="categories">
-    <div class="container my-3 py-5">
-      <div class="row my-5">
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:bowl-food"></iconify-icon>
-<!--            <h5>Foodies</h5>-->
-          </a>
-        </div>
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:bird"></iconify-icon>
-            
-          </a>
-        </div>
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
-            
-          </a>
-        </div>
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:fish"></iconify-icon>
-            
-          </a>
-        </div>
-        <div class="col text-center">
-          <a href="#" class="categories-item">
-            <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
-           
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="clothing" class="my-2 overflow-hidden">
-    <div class="container pb-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-3 fw-normal">Toys</h2>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-
-      <div class="products-carousel swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item1.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item2.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              -10%
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item3.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item7.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- / products-carousel -->
-
-
-    </div>
-  </section>
-
-  <section id="foodies" class="my-5">
-    <div class="container my-5 py-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center">
-        <h2 class="display-3 fw-normal">School Stash</h2>
-        <div class="mb-4 mb-md-0">
-          <p class="m-0">
-            <button class="filter-button me-4  active" data-filter="*">ALL</button>
-            <button class="filter-button me-4 " data-filter=".cat">Water Bottle</button>
-            <button class="filter-button me-4 " data-filter=".dog">Pencil Case</button>
-            <button class="filter-button me-4 " data-filter=".bird">Coloring</button>
-          </p>
-        </div>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-
-      <div class="isotope-container row">
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item9.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item10.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item11.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            Sold
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item12.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item bird col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item13.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item bird col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item14.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item dog col-md-4 col-lg-3 my-4">
-          <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            Sale
-          </div>
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item15.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="item cat col-md-4 col-lg-3 my-4">
-          <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-            New
-          </div> -->
-          <div class="card position-relative">
-            <a href="single-product.html"><img src="images/item16.jpg" class="img-fluid rounded-4" alt="image"></a>
-            <div class="card-body p-0">
-              <a href="single-product.html">
-                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-              </a>
-
-              <div class="card-text">
-                <span class="rating secondary-font">
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                  5.0</span>
-
-                <h3 class="secondary-font text-primary">$18.00</h3>
-
-                <div class="d-flex flex-wrap mt-3">
-                  <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                    <h5 class="text-uppercase m-0">Add to Cart</h5>
-                  </a>
-                  <a href="#" class="btn-wishlist px-4 pt-3 ">
-                    <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                  </a>
-                </div>
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-
-      </div>
-
-
-    </div>
-  </section>
-  
-  <section id="clothing" class="my-2 overflow-hidden">
-    <div class="container pb-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-3 fw-normal">Back Packs</h2>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-
-      <div class="products-carousel swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item1.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item2.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              -10%
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item3.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item7.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- / products-carousel -->
-
-
-    </div>
-  </section>
-  
-  <section id="clothing" class="my-2 overflow-hidden">
-    <div class="container pb-5">
-
-      <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-3 fw-normal">Clothes</h2>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-      </div>
-
-      <div class="products-carousel swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item1.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item2.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              -10%
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item3.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item7.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <!-- / products-carousel -->
-
-
-    </div>
-  </section>
-
-  <section id="banner-2" class="my-3" style="background: #F9F3EC;">
-    <div class="container">
-      <div class="row flex-row-reverse banner-content align-items-center">
-        <div class="img-wrapper col-12 col-md-6">
-          <img src="images/clearance-img.png" class="img-fluid">
-        </div>
-        <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
-          <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Upto 40% off</div>
-          <h2 class="banner-title display-1 fw-normal">Clearance sale !!!
-          </h2>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonial">
-    <div class="container my-5 py-5">
-      <div class="row">
-        <div class="offset-md-1 col-md-10">
-          <div class="swiper testimonial-swiper">
+        <div class="swiper main-swiper">
             <div class="swiper-wrapper">
 
-              <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">There can be no keener revelation of a society’s soul 
-                        than the way in which it treats its children.</p>
-                    <p class="text-black">- Nelson Mandela</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">It is the supreme art of the teacher to awaken joy in 
-                        creative expression and knowledge.</p>
-                    <p class="text-black">- Albert Einstein</p>
-                  </div>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="row ">
-                  <div class="col-2">
-                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
-                  </div>
-                  <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
-                    <p class="testimonial-content fs-2">Every child is an artist. The problem is how to remain an artist 
-                        once we grow up.</p>
-                    <p class="text-black">- Pablo Picasso </p>
-                  </div>
-                </div>
-              </div>
+                <div class="swiper-slide py-5">
+                    <div class="row banner-content align-items-center">
+                        <div class="img-wrapper col-md-5">
+                            <img src="images/banner-img.png" class="img-fluid">
+                        </div>
+                        <div class="content-wrapper col-md-7 p-5 mb-5">
+                            <!--                <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>-->
+                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
+                                    kids</span>
+                            </h2>
+                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                shop now
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                <use xlink:href="#arrow-right"></use>
+                                </svg></a>
+                        </div>
 
+                    </div>
+                </div>
+                <div class="swiper-slide py-5">
+                    <div class="row banner-content align-items-center">
+                        <div class="img-wrapper col-md-5">
+                            <img src="images/banner-img3.png" class="img-fluid">
+                        </div>
+                        <div class="content-wrapper col-md-7 p-5 mb-5">
+                            <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
+                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
+                                    kids</span>
+                            </h2>
+                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                shop now
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                <use xlink:href="#arrow-right"></use>
+                                </svg></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="swiper-slide py-5">
+                    <div class="row banner-content align-items-center">
+                        <div class="img-wrapper col-md-5">
+                            <img src="images/banner-img4.png" class="img-fluid">
+                        </div>
+                        <div class="content-wrapper col-md-7 p-5 mb-5">
+                            <div class="secondary-font text-primary text-uppercase mb-4">Save 10 - 20 % off</div>
+                            <h2 class="banner-title display-1 fw-normal">Best destination for <span class="text-primary">your
+                                    kids</span>
+                            </h2>
+                            <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                shop now
+                                <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                <use xlink:href="#arrow-right"></use>
+                                </svg></a>
+                        </div>
+
+                    </div>
+                </div>
             </div>
 
-            <div class="swiper-pagination"></div>
+            <div class="swiper-pagination mb-5"></div>
 
-          </div>
         </div>
-      </div>
     </div>
+</section>
 
-  </section>
+<section id="categories">
+    <div class="container my-3 py-5">
+        <div class="row my-5">
+            <div class="col text-center">
+                <a href="#" class="categories-item">
+                    <iconify-icon class="category-icon" icon="ph:bowl-food"></iconify-icon>
+                    <!--            <h5>Foodies</h5>-->
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="#" class="categories-item">
+                    <iconify-icon class="category-icon" icon="ph:bird"></iconify-icon>
 
-  <section id="bestselling" class="my-5 overflow-hidden">
-    <div class="container py-5 mb-5">
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="#" class="categories-item">
+                    <iconify-icon class="category-icon" icon="ph:dog"></iconify-icon>
 
-      <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
-        <h2 class="display-3 fw-normal">Best selling products</h2>
-        <div>
-          <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-            shop now
-            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-              <use xlink:href="#arrow-right"></use>
-            </svg></a>
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="#" class="categories-item">
+                    <iconify-icon class="category-icon" icon="ph:fish"></iconify-icon>
+
+                </a>
+            </div>
+            <div class="col text-center">
+                <a href="#" class="categories-item">
+                    <iconify-icon class="category-icon" icon="ph:cat"></iconify-icon>
+
+                </a>
+            </div>
         </div>
-      </div>
-
-      <div class=" swiper bestselling-swiper">
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item5.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item6.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              Sale
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item7.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item8.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              -10%
-            </div>
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item3.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-              New
-            </div> -->
-            <div class="card position-relative">
-              <a href="single-product.html"><img src="images/item4.jpg" class="img-fluid rounded-4" alt="image"></a>
-              <div class="card-body p-0">
-                <a href="single-product.html">
-                  <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                </a>
-
-                <div class="card-text">
-                  <span class="rating secondary-font">
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                    5.0</span>
-
-                  <h3 class="secondary-font text-primary">$18.00</h3>
-
-                  <div class="d-flex flex-wrap mt-3">
-                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                      <h5 class="text-uppercase m-0">Add to Cart</h5>
-                    </a>
-                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                      <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                    </a>
-                  </div>
-
-
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-        </div>
-      </div>
-      <!-- / category-carousel -->
-
-
     </div>
-  </section>
+</section>
 
-  <section id="service" >
-    <div class="container py-5 my-5" >
-      <div class="row g-md-5 pt-4">
-        <div class="col-md-3 my-3">
-          <div class="card">
+<section id="clothing" class="my-2 overflow-hidden">
+    <div class="container pb-5">
+
+        <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <h2 class="display-3 fw-normal">Best selling products</h2>
             <div>
-              <iconify-icon class="service-icon text-primary" icon="la:shopping-cart"></iconify-icon>
+                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    shop now
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                    <use xlink:href="#arrow-right"></use>
+                    </svg></a>
             </div>
-            <h3 class="card-title py-2 m-0">Delivery to dorstep</h3>
-            
-          </div>
-        </div>
-        <div class="col-md-3 my-3">
-          <div class="card">
-            <div>
-              <iconify-icon class="service-icon text-primary" icon="la:user-check"></iconify-icon>
-            </div>
-            <h3 class="card-title py-2 m-0">100% secure payment</h3>
-            
-          </div>
-        </div>
-        <div class="col-md-3 my-3">
-          <div class="card">
-            <div>
-              <iconify-icon class="service-icon text-primary" icon="la:tag"></iconify-icon>
-            </div>
-            <h3 class="card-title py-2 m-0">Monthly Offers</h3>
-            
-          </div>
-        </div>
-        <div class="col-md-3 my-3">
-          <div class="card">
-            <div>
-              <iconify-icon class="service-icon text-primary" icon="la:award"></iconify-icon>
-            </div>
-            <h3 class="card-title py-2 m-0">Quality guarantee</h3>
-            
-          </div>
         </div>
 
-      </div>
+        <div class="products-carousel">
+            <div class="swiper-wrapper">
+                <!--1st Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-1">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-1">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-1">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-1">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-1">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-1">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 1st Product-->
+
+                <!--2nd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-2">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-2">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-2">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-2">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-2">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-2">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 2nd Product-->
+
+                <!--3rd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-3">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-3">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-3">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-3">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-3">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-3">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 3rd Product-->
+
+                <!--4th Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-4">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-4">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-4">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-4">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-4">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-4">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 4th Product-->
+
+                <!--1st Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-5">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-5">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-5">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-5">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-5">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-5">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 1st Product-->
+
+                <!--2nd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-6">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-6">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-6">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-6">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-6">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-6">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 2nd Product-->
+
+                <!--3rd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-7">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-7">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-7">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-7">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-7">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-7">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 3rd Product-->
+
+                <!--4th Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-8">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-8">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-8">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-8">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-8">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-8">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 4th Product-->
+
+
+
+            </div>
+        </div>
+        <!-- / products-carousel -->
+
+        <div class="products-carousel">
+            <div class="swiper-wrapper">
+                <!--4th Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-9">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-9">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-9">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-9">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-9">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-9">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 4th Product-->
+                <!--1st Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-10">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-10">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-10">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-10">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-10">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-10">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 1st Product-->
+
+                <!--2nd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-11">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-11">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-11">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-11">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-11">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-11">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 2nd Product-->
+
+                <!--3rd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-12">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-12">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-12">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-12">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-12">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-12">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 3rd Product-->
+
+                <!--4th Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-13">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-13">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-13">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-13">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-13">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-13">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 4th Product-->
+
+                <!--1st Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-14">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-14">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-14">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-14">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-14">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-14">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 1st Product-->
+
+                <!--2nd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-15">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-15">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-15">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-15">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-15">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-15">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 2nd Product-->
+
+                <!--3rd Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-16">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-16">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-16">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-16">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-16">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3 " id="home-add-to-wish-16">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End of 3rd Product-->
+
+                <!--4th Product-->
+                <div class="swiper-slide">
+                    <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                        New
+                    </div>
+                    <div class="card position-relative">
+                        <img src="images/item1.jpg" class="img-fluid rounded-4" alt="image" id="homepage-img-17">
+                        <div class="card-body p-0">
+                            <a href="single-product.html" id="homepage-product-a-17">
+                                <h3 class="card-title pt-4 m-0" id="homepage-product-title-17">Grey hoodie</h3>
+                            </a>
+
+                            <div class="card-text">
+                                <span class="rating secondary-font">
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
+                                    5.0</span>
+
+                                <h3 class="secondary-font text-primary" id="homepage-product-price-17">$18.00</h3>
+
+                                <div class="d-flex flex-wrap mt-3">
+                                    <a class="btn-cart me-3 px-4 pt-3 pb-3" id="home-add-to-cart-17">
+                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                    </a>
+                                    <a href="#" class="btn-wishlist px-4 pt-3" id="home-add-to-wish-17">
+                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End of 4th Product-->
+            </div>
+        </div>
+        <!-- / products-carousel -->
+
+
     </div>
-  </section>
+</section>
 
-  <section id="insta" class="my-5">
-    <div class="row g-0 py-5">
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/teddy.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/bag.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/hoodie2.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/toy.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/bottle.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-      <div class="col instagram-item  text-center position-relative">
-        <div class="icon-overlay d-flex justify-content-center position-absolute">
-          <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
-        </div>
-        <a href="#">
-          <img src="images/highlight.jpg" alt="insta-img" class="img-fluid rounded-3">
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer id="footer" class="my-5" style="background: #F9F3EC;">
-    <div class="container py-5 my-5">
-      <div class="row">
-
-        <div class="col-md-3">
-          <div class="footer-menu">
-            <img src="images/logo.png" alt="logo">
-            <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
-            <div class="social-links">
-              <ul class="d-flex list-unstyled gap-2">
-                <li class="social">
-                  <a href="#">
-                    <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
-                  </a>
-                </li>
-                <li class="social">
-                  <a href="#">
-                    <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
-                  </a>
-                </li>
-                <li class="social">
-                  <a href="#">
-                    <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
-                  </a>
-                </li>
-                <li class="social">
-                  <a href="#">
-                    <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
-                  </a>
-                </li>
-                <li class="social">
-                  <a href="#">
-                    <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
-                  </a>
-                </li>
-
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 ">
-          <div class="footer-menu mt-5">
-            <h3>Quick Links</h3>
-            <ul class="menu-list list-unstyled">
-              <li class="menu-item">
-                <a href="#" class="nav-link">Home</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">About us</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Offer </a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Services</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="nav-link">Conatct Us</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 ">
-          <div class="footer-menu mt-5">
-            <h3>Help Center</h5>
-              <ul class="menu-list list-unstyled">
-                <li class="menu-item">
-                  <a href="#" class="nav-link">FAQs</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Payment</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Returns & Refunds</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Checkout</a>
-                </li>
-                <li class="menu-item">
-                  <a href="#" class="nav-link">Delivery Information</a>
-                </li>
-              </ul>
-          </div>
-        </div>
-        <div class="col-md-3 ">
-          <div class="mt-5">
-            <h3 >Our Newsletter</h3>
-            <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
-            <div class="search-bar border rounded-pill border-dark-subtle px-2">
-              <form class="text-center d-flex align-items-center" action="" method="">
-                <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
-                <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
-              </form>
-            </div>
-          </div>
-        </div>
-          <div class="col-12 copyright" style="display: flex; align-content: center; justify-content: center;">
-          <p class="secondary-font mt-3" >© 2024 KiddieKart. All Rights Reserved.</p>
-        </div>
-
-      </div>
-    </div>
-  </footer>
-
-  <div id="footer-bottom">
+<section id="banner-2" class="my-3" style="background: #F9F3EC;">
     <div class="container">
-      <hr class="m-0">
+        <div class="row flex-row-reverse banner-content align-items-center">
+            <div class="img-wrapper col-12 col-md-6">
+                <img src="images/clearance-img.png" class="img-fluid">
+            </div>
+            <div class="content-wrapper col-12 offset-md-1 col-md-5 p-5">
+                <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Upto 40% off</div>
+                <h2 class="banner-title display-1 fw-normal">Clearance sale !!!
+                </h2>
+                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    shop now
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                    <use xlink:href="#arrow-right"></use>
+                    </svg></a>
+            </div>
+
+        </div>
     </div>
-  </div>
+</section>
+
+<section id="testimonial">
+    <div class="container my-5 py-5">
+        <div class="row">
+            <div class="offset-md-1 col-md-10">
+                <div class="swiper testimonial-swiper">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="row ">
+                                <div class="col-2">
+                                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                                </div>
+                                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                                    <p class="testimonial-content fs-2">There can be no keener revelation of a society’s soul 
+                                        than the way in which it treats its children.</p>
+                                    <p class="text-black">- Nelson Mandela</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="row ">
+                                <div class="col-2">
+                                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                                </div>
+                                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                                    <p class="testimonial-content fs-2">It is the supreme art of the teacher to awaken joy in 
+                                        creative expression and knowledge.</p>
+                                    <p class="text-black">- Albert Einstein</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="row ">
+                                <div class="col-2">
+                                    <iconify-icon icon="ri:double-quotes-l" class="quote-icon text-primary"></iconify-icon>
+                                </div>
+                                <div class="col-md-10 mt-md-5 p-5 pt-0 pt-md-5">
+                                    <p class="testimonial-content fs-2">Every child is an artist. The problem is how to remain an artist 
+                                        once we grow up.</p>
+                                    <p class="text-black">- Pablo Picasso </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 
-  <script src="js/jquery-1.11.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"></script>
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<section id="service" >
+    <div class="container py-5 my-5" >
+        <div class="row g-md-5 pt-4">
+            <div class="col-md-3 my-3">
+                <div class="card">
+                    <div>
+                        <iconify-icon class="service-icon text-primary" icon="la:shopping-cart"></iconify-icon>
+                    </div>
+                    <h3 class="card-title py-2 m-0">Delivery to dorstep</h3>
+
+                </div>
+            </div>
+            <div class="col-md-3 my-3">
+                <div class="card">
+                    <div>
+                        <iconify-icon class="service-icon text-primary" icon="la:user-check"></iconify-icon>
+                    </div>
+                    <h3 class="card-title py-2 m-0">100% secure payment</h3>
+
+                </div>
+            </div>
+            <div class="col-md-3 my-3">
+                <div class="card">
+                    <div>
+                        <iconify-icon class="service-icon text-primary" icon="la:tag"></iconify-icon>
+                    </div>
+                    <h3 class="card-title py-2 m-0">Monthly Offers</h3>
+
+                </div>
+            </div>
+            <div class="col-md-3 my-3">
+                <div class="card">
+                    <div>
+                        <iconify-icon class="service-icon text-primary" icon="la:award"></iconify-icon>
+                    </div>
+                    <h3 class="card-title py-2 m-0">Quality guarantee</h3>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="insta" class="my-5">
+    <div class="row g-0 py-5">
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/teddy.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/bag.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/hoodie2.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/toy.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/bottle.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+        <div class="col instagram-item  text-center position-relative">
+            <div class="icon-overlay d-flex justify-content-center position-absolute">
+                <iconify-icon class="text-white" icon="la:instagram"></iconify-icon>
+            </div>
+            <a href="#">
+                <img src="images/highlight.jpg" alt="insta-img" class="img-fluid rounded-3">
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="my-5" style="background: #F9F3EC;">
+    <div class="container py-5 my-5">
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="footer-menu">
+                    <img src="images/logo.png" alt="logo">
+                    <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="social-links">
+                        <ul class="d-flex list-unstyled gap-2">
+                            <li class="social">
+                                <a href="#">
+                                    <iconify-icon class="social-icon" icon="ri:facebook-fill"></iconify-icon>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="#">
+                                    <iconify-icon class="social-icon" icon="ri:twitter-fill"></iconify-icon>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="#">
+                                    <iconify-icon class="social-icon" icon="ri:pinterest-fill"></iconify-icon>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="#">
+                                    <iconify-icon class="social-icon" icon="ri:instagram-fill"></iconify-icon>
+                                </a>
+                            </li>
+                            <li class="social">
+                                <a href="#">
+                                    <iconify-icon class="social-icon" icon="ri:youtube-fill"></iconify-icon>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="footer-menu mt-5">
+                    <h3>Quick Links</h3>
+                    <ul class="menu-list list-unstyled">
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Home</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">About us</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Offer </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Services</a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="#" class="nav-link">Conatct Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="footer-menu mt-5">
+                    <h3>Help Center</h5>
+                        <ul class="menu-list list-unstyled">
+                            <li class="menu-item">
+                                <a href="#" class="nav-link">FAQs</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="nav-link">Payment</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="nav-link">Returns & Refunds</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="nav-link">Checkout</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="nav-link">Delivery Information</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="mt-5">
+                    <h3 >Our Newsletter</h3>
+                    <p class="blog-paragraph fs-6">Subscribe to our newsletter to get updates about our grand offers.</p>
+                    <div class="search-bar border rounded-pill border-dark-subtle px-2">
+                        <form class="text-center d-flex align-items-center" action="" method="">
+                            <input type="text" class="form-control border-0 bg-transparent" placeholder="Enter your email here" />
+                            <iconify-icon class="send-icon" icon="tabler:location-filled"></iconify-icon>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 copyright" style="display: flex; align-content: center; justify-content: center;">
+                <p class="secondary-font mt-3" >© 2024 KiddieKart. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<div id="footer-bottom">
+    <div class="container">
+        <hr class="m-0">
+    </div>
+</div>
+
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+crossorigin="anonymous"></script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+<script src="js/index.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

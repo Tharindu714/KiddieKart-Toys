@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebFilter(filterName = "FilterSignInCheck", urlPatterns = {"/add_product.html"})
+@WebFilter(filterName = "FilterSignInCheck", urlPatterns = {"/add_product.html","/checkout.html","/wishlist.html"})
 public class FilterSignInCheck implements Filter {
 
     @Override
